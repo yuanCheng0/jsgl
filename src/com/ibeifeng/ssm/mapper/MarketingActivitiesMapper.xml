@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibeifeng.ssm.mapper.MarketingActivitiesMapper" >
+  <resultMap id="BaseResultMap" type="com.ibeifeng.ssm.pojo.MarketingActivities" >
+    <id column="act_id" property="actId" jdbcType="INTEGER" />
+    <result column="act_name" property="actName" jdbcType="VARCHAR" />
+    <result column="act_content" property="actContent" jdbcType="VARCHAR" />
+    <result column="act_principal" property="actPrincipal" jdbcType="VARCHAR" />
+    <result column="act_startTime" property="actStarttime" jdbcType="VARCHAR" />
+    <result column="act_endTime" property="actEndtime" jdbcType="VARCHAR" />
+    <result column="act_states" property="actStates" jdbcType="VARCHAR" />
+    <result column="act_staffid" property="actStaffid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    act_id, act_name, act_content, act_principal, act_startTime, act_endTime, act_states, 
+    act_staffid
+  </sql>
+  <select id="selectMarketAll" resultMap="BaseResultMap">
+  	SELECT * FROM marketingactivities
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from marketingactivities
+    where act_id = #{actId,jdbcType=INTEGER}
+  </select>
+  <select id="findById">
+  	select * from marketingactivities where act_id= #{actId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from marketingactivities
+    where act_id = #{actId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ibeifeng.ssm.pojo.MarketingActivities" >
+    insert into marketingactivities (act_id, act_name, act_content, 
+      act_principal, act_startTime, act_endTime, 
+      act_states, act_staffid)
+    values (#{actId,jdbcType=INTEGER}, #{actName,jdbcType=VARCHAR}, #{actContent,jdbcType=VARCHAR}, 
+      #{actPrincipal,jdbcType=VARCHAR}, #{actStarttime,jdbcType=VARCHAR}, #{actEndtime,jdbcType=VARCHAR}, 
+      #{actStates,jdbcType=VARCHAR}, #{actStaffid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibeifeng.ssm.pojo.MarketingActivities" >
+    insert into marketingactivities
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="actId != null" >
+        act_id,
+      </if>
+      <if test="actName != null" >
+        act_name,
+      </if>
+      <if test="actContent != null" >
+        act_content,
+      </if>
+      <if test="actPrincipal != null" >
+        act_principal,
+      </if>
+      <if test="actStarttime != null" >
+        act_startTime,
+      </if>
+      <if test="actEndtime != null" >
+        act_endTime,
+      </if>
+      <if test="actStates != null" >
+        act_states,
+      </if>
+      <if test="actStaffid != null" >
+        act_staffid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="actId != null" >
+        #{actId,jdbcType=INTEGER},
+      </if>
+      <if test="actName != null" >
+        #{actName,jdbcType=VARCHAR},
+      </if>
+      <if test="actContent != null" >
+        #{actContent,jdbcType=VARCHAR},
+      </if>
+      <if test="actPrincipal != null" >
+        #{actPrincipal,jdbcType=VARCHAR},
+      </if>
+      <if test="actStarttime != null" >
+        #{actStarttime,jdbcType=VARCHAR},
+      </if>
+      <if test="actEndtime != null" >
+        #{actEndtime,jdbcType=VARCHAR},
+      </if>
+      <if test="actStates != null" >
+        #{actStates,jdbcType=VARCHAR},
+      </if>
+      <if test="actStaffid != null" >
+        #{actStaffid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibeifeng.ssm.pojo.MarketingActivities" >
+    update marketingactivities
+    <set >
+      <if test="actName != null" >
+        act_name = #{actName,jdbcType=VARCHAR},
+      </if>
+      <if test="actContent != null" >
+        act_content = #{actContent,jdbcType=VARCHAR},
+      </if>
+      <if test="actPrincipal != null" >
+        act_principal = #{actPrincipal,jdbcType=VARCHAR},
+      </if>
+      <if test="actStarttime != null" >
+        act_startTime = #{actStarttime,jdbcType=VARCHAR},
+      </if>
+      <if test="actEndtime != null" >
+        act_endTime = #{actEndtime,jdbcType=VARCHAR},
+      </if>
+      <if test="actStates != null" >
+        act_states = #{actStates,jdbcType=VARCHAR},
+      </if>
+      <if test="actStaffid != null" >
+        act_staffid = #{actStaffid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where act_id = #{actId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibeifeng.ssm.pojo.MarketingActivities" >
+    update marketingactivities
+    set act_name = #{actName,jdbcType=VARCHAR},
+      act_content = #{actContent,jdbcType=VARCHAR},
+      act_principal = #{actPrincipal,jdbcType=VARCHAR},
+      act_startTime = #{actStarttime,jdbcType=VARCHAR},
+      act_endTime = #{actEndtime,jdbcType=VARCHAR},
+      act_states = #{actStates,jdbcType=VARCHAR},
+      act_staffid = #{actStaffid,jdbcType=INTEGER}
+    where act_id = #{actId,jdbcType=INTEGER}
+  </update>
+</mapper>

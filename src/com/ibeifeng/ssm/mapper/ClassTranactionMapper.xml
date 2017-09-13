@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibeifeng.ssm.mapper.ClassTranactionMapper" >
+  <resultMap id="BaseResultMap" type="com.ibeifeng.ssm.pojo.ClassTranaction" >
+    <id column="clatra_id" property="clatraId" jdbcType="INTEGER" />
+    <result column="clatra_title" property="clatraTitle" jdbcType="VARCHAR" />
+    <result column="clatra_describe" property="clatraDescribe" jdbcType="VARCHAR" />
+    <result column="clatra_classid" property="clatraClassid" jdbcType="INTEGER" />
+    <result column="clatra_holdtime" property="clatraHoldtime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    clatra_id, clatra_title, clatra_describe, clatra_classid, clatra_holdtime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from classtranaction
+    where clatra_id = #{clatraId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from classtranaction
+    where clatra_id = #{clatraId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ibeifeng.ssm.pojo.ClassTranaction" >
+    insert into classtranaction (clatra_id, clatra_title, clatra_describe, 
+      clatra_classid, clatra_holdtime)
+    values (#{clatraId,jdbcType=INTEGER}, #{clatraTitle,jdbcType=VARCHAR}, #{clatraDescribe,jdbcType=VARCHAR}, 
+      #{clatraClassid,jdbcType=INTEGER}, #{clatraHoldtime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibeifeng.ssm.pojo.ClassTranaction" >
+    insert into classtranaction
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="clatraId != null" >
+        clatra_id,
+      </if>
+      <if test="clatraTitle != null" >
+        clatra_title,
+      </if>
+      <if test="clatraDescribe != null" >
+        clatra_describe,
+      </if>
+      <if test="clatraClassid != null" >
+        clatra_classid,
+      </if>
+      <if test="clatraHoldtime != null" >
+        clatra_holdtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="clatraId != null" >
+        #{clatraId,jdbcType=INTEGER},
+      </if>
+      <if test="clatraTitle != null" >
+        #{clatraTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="clatraDescribe != null" >
+        #{clatraDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="clatraClassid != null" >
+        #{clatraClassid,jdbcType=INTEGER},
+      </if>
+      <if test="clatraHoldtime != null" >
+        #{clatraHoldtime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibeifeng.ssm.pojo.ClassTranaction" >
+    update classtranaction
+    <set >
+      <if test="clatraTitle != null" >
+        clatra_title = #{clatraTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="clatraDescribe != null" >
+        clatra_describe = #{clatraDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="clatraClassid != null" >
+        clatra_classid = #{clatraClassid,jdbcType=INTEGER},
+      </if>
+      <if test="clatraHoldtime != null" >
+        clatra_holdtime = #{clatraHoldtime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where clatra_id = #{clatraId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibeifeng.ssm.pojo.ClassTranaction" >
+    update classtranaction
+    set clatra_title = #{clatraTitle,jdbcType=VARCHAR},
+      clatra_describe = #{clatraDescribe,jdbcType=VARCHAR},
+      clatra_classid = #{clatraClassid,jdbcType=INTEGER},
+      clatra_holdtime = #{clatraHoldtime,jdbcType=VARCHAR}
+    where clatra_id = #{clatraId,jdbcType=INTEGER}
+  </update>
+</mapper>

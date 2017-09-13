@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibeifeng.ssm.mapper.ClassesMapper" >
+  <resultMap id="BaseResultMap" type="com.ibeifeng.ssm.pojo.Classes" >
+    <id column="class_id" property="classId" jdbcType="INTEGER" />
+    <result column="classroom_name" property="classroomName" jdbcType="VARCHAR" />
+    <result column="class_subject_id" property="classSubjectId" jdbcType="INTEGER" />
+    <result column="class_starttime" property="classStarttime" jdbcType="VARCHAR" />
+    <result column="class_endtime" property="classEndtime" jdbcType="VARCHAR" />
+    <result column="class_studentnum" property="classStudentnum" jdbcType="INTEGER" />
+    <result column="class_staff_id" property="classStaffId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    class_id, classroom_name, class_subject_id, class_starttime, class_endtime, class_studentnum, 
+    class_staff_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from classes
+    where class_id = #{classId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from classes
+    where class_id = #{classId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ibeifeng.ssm.pojo.Classes" >
+    insert into classes (class_id, classroom_name, class_subject_id, 
+      class_starttime, class_endtime, class_studentnum, 
+      class_staff_id)
+    values (#{classId,jdbcType=INTEGER}, #{classroomName,jdbcType=VARCHAR}, #{classSubjectId,jdbcType=INTEGER}, 
+      #{classStarttime,jdbcType=VARCHAR}, #{classEndtime,jdbcType=VARCHAR}, #{classStudentnum,jdbcType=INTEGER}, 
+      #{classStaffId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibeifeng.ssm.pojo.Classes" >
+    insert into classes
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="classId != null" >
+        class_id,
+      </if>
+      <if test="classroomName != null" >
+        classroom_name,
+      </if>
+      <if test="classSubjectId != null" >
+        class_subject_id,
+      </if>
+      <if test="classStarttime != null" >
+        class_starttime,
+      </if>
+      <if test="classEndtime != null" >
+        class_endtime,
+      </if>
+      <if test="classStudentnum != null" >
+        class_studentnum,
+      </if>
+      <if test="classStaffId != null" >
+        class_staff_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="classId != null" >
+        #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="classroomName != null" >
+        #{classroomName,jdbcType=VARCHAR},
+      </if>
+      <if test="classSubjectId != null" >
+        #{classSubjectId,jdbcType=INTEGER},
+      </if>
+      <if test="classStarttime != null" >
+        #{classStarttime,jdbcType=VARCHAR},
+      </if>
+      <if test="classEndtime != null" >
+        #{classEndtime,jdbcType=VARCHAR},
+      </if>
+      <if test="classStudentnum != null" >
+        #{classStudentnum,jdbcType=INTEGER},
+      </if>
+      <if test="classStaffId != null" >
+        #{classStaffId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibeifeng.ssm.pojo.Classes" >
+    update classes
+    <set >
+      <if test="classroomName != null" >
+        classroom_name = #{classroomName,jdbcType=VARCHAR},
+      </if>
+      <if test="classSubjectId != null" >
+        class_subject_id = #{classSubjectId,jdbcType=INTEGER},
+      </if>
+      <if test="classStarttime != null" >
+        class_starttime = #{classStarttime,jdbcType=VARCHAR},
+      </if>
+      <if test="classEndtime != null" >
+        class_endtime = #{classEndtime,jdbcType=VARCHAR},
+      </if>
+      <if test="classStudentnum != null" >
+        class_studentnum = #{classStudentnum,jdbcType=INTEGER},
+      </if>
+      <if test="classStaffId != null" >
+        class_staff_id = #{classStaffId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where class_id = #{classId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibeifeng.ssm.pojo.Classes" >
+    update classes
+    set classroom_name = #{classroomName,jdbcType=VARCHAR},
+      class_subject_id = #{classSubjectId,jdbcType=INTEGER},
+      class_starttime = #{classStarttime,jdbcType=VARCHAR},
+      class_endtime = #{classEndtime,jdbcType=VARCHAR},
+      class_studentnum = #{classStudentnum,jdbcType=INTEGER},
+      class_staff_id = #{classStaffId,jdbcType=INTEGER}
+    where class_id = #{classId,jdbcType=INTEGER}
+  </update>
+</mapper>

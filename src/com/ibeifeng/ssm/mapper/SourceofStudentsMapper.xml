@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibeifeng.ssm.mapper.SourceofStudentsMapper" >
+  <resultMap id="BaseResultMap" type="com.ibeifeng.ssm.pojo.SourceofStudents" >
+    <id column="sos_id" property="sosId" jdbcType="INTEGER" />
+    <result column="sos_name" property="sosName" jdbcType="VARCHAR" />
+    <result column="sos_sex" property="sosSex" jdbcType="VARCHAR" />
+    <result column="sos_age" property="sosAge" jdbcType="INTEGER" />
+    <result column="sos_email" property="sosEmail" jdbcType="VARCHAR" />
+    <result column="sos_school" property="sosSchool" jdbcType="VARCHAR" />
+    <result column="staff_id" property="staffId" jdbcType="INTEGER" />
+    <result column="sos_interStates" property="sosInterstates" jdbcType="VARCHAR" />
+    <result column="sos_phone" property="sosPhone" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sos_id, sos_name, sos_sex, sos_age, sos_email, sos_school, staff_id, sos_interStates, 
+    sos_phone
+  </sql>
+  <select id="findAll" resultMap="BaseResultMap">
+  	SELECT * FROM sourceofstudents
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sourceofstudents
+    where sos_id = #{sosId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sourceofstudents
+    where sos_id = #{sosId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ibeifeng.ssm.pojo.SourceofStudents" >
+    insert into sourceofstudents (sos_id, sos_name, sos_sex, 
+      sos_age, sos_email, sos_school, 
+      staff_id, sos_interStates, sos_phone
+      )
+    values (#{sosId,jdbcType=INTEGER}, #{sosName,jdbcType=VARCHAR}, #{sosSex,jdbcType=VARCHAR}, 
+      #{sosAge,jdbcType=INTEGER}, #{sosEmail,jdbcType=VARCHAR}, #{sosSchool,jdbcType=VARCHAR}, 
+      #{staffId,jdbcType=INTEGER}, #{sosInterstates,jdbcType=VARCHAR}, #{sosPhone,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibeifeng.ssm.pojo.SourceofStudents" >
+    insert into sourceofstudents
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sosId != null" >
+        sos_id,
+      </if>
+      <if test="sosName != null" >
+        sos_name,
+      </if>
+      <if test="sosSex != null" >
+        sos_sex,
+      </if>
+      <if test="sosAge != null" >
+        sos_age,
+      </if>
+      <if test="sosEmail != null" >
+        sos_email,
+      </if>
+      <if test="sosSchool != null" >
+        sos_school,
+      </if>
+      <if test="staffId != null" >
+        staff_id,
+      </if>
+      <if test="sosInterstates != null" >
+        sos_interStates,
+      </if>
+      <if test="sosPhone != null" >
+        sos_phone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sosId != null" >
+        #{sosId,jdbcType=INTEGER},
+      </if>
+      <if test="sosName != null" >
+        #{sosName,jdbcType=VARCHAR},
+      </if>
+      <if test="sosSex != null" >
+        #{sosSex,jdbcType=VARCHAR},
+      </if>
+      <if test="sosAge != null" >
+        #{sosAge,jdbcType=INTEGER},
+      </if>
+      <if test="sosEmail != null" >
+        #{sosEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="sosSchool != null" >
+        #{sosSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="staffId != null" >
+        #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="sosInterstates != null" >
+        #{sosInterstates,jdbcType=VARCHAR},
+      </if>
+      <if test="sosPhone != null" >
+        #{sosPhone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibeifeng.ssm.pojo.SourceofStudents" >
+    update sourceofstudents
+    <set >
+      <if test="sosName != null" >
+        sos_name = #{sosName,jdbcType=VARCHAR},
+      </if>
+      <if test="sosSex != null" >
+        sos_sex = #{sosSex,jdbcType=VARCHAR},
+      </if>
+      <if test="sosAge != null" >
+        sos_age = #{sosAge,jdbcType=INTEGER},
+      </if>
+      <if test="sosEmail != null" >
+        sos_email = #{sosEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="sosSchool != null" >
+        sos_school = #{sosSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="staffId != null" >
+        staff_id = #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="sosInterstates != null" >
+        sos_interStates = #{sosInterstates,jdbcType=VARCHAR},
+      </if>
+      <if test="sosPhone != null" >
+        sos_phone = #{sosPhone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sos_id = #{sosId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibeifeng.ssm.pojo.SourceofStudents" >
+    update sourceofstudents
+    set sos_name = #{sosName,jdbcType=VARCHAR},
+      sos_sex = #{sosSex,jdbcType=VARCHAR},
+      sos_age = #{sosAge,jdbcType=INTEGER},
+      sos_email = #{sosEmail,jdbcType=VARCHAR},
+      sos_school = #{sosSchool,jdbcType=VARCHAR},
+      staff_id = #{staffId,jdbcType=INTEGER},
+      sos_interStates = #{sosInterstates,jdbcType=VARCHAR},
+      sos_phone = #{sosPhone,jdbcType=VARCHAR}
+    where sos_id = #{sosId,jdbcType=INTEGER}
+  </update>
+</mapper>

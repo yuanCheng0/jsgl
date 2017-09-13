@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibeifeng.ssm.mapper.TvaluationMapper" >
+  <resultMap id="BaseResultMap" type="com.ibeifeng.ssm.pojo.Tvaluation" >
+    <id column="tvaluation_id" property="tvaluationId" jdbcType="INTEGER" />
+    <result column="tvaluation_date" property="tvaluationDate" jdbcType="VARCHAR" />
+    <result column="tvaluation_title" property="tvaluationTitle" jdbcType="VARCHAR" />
+    <result column="tvaluation_content" property="tvaluationContent" jdbcType="VARCHAR" />
+    <result column="tv_staffid" property="tvStaffid" jdbcType="INTEGER" />
+    <result column="student_id" property="studentId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    tvaluation_id, tvaluation_date, tvaluation_title, tvaluation_content, tv_staffid, 
+    student_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tvaluation
+    where tvaluation_id = #{tvaluationId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tvaluation
+    where tvaluation_id = #{tvaluationId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ibeifeng.ssm.pojo.Tvaluation" >
+    insert into tvaluation (tvaluation_id, tvaluation_date, tvaluation_title, 
+      tvaluation_content, tv_staffid, student_id
+      )
+    values (#{tvaluationId,jdbcType=INTEGER}, #{tvaluationDate,jdbcType=VARCHAR}, #{tvaluationTitle,jdbcType=VARCHAR}, 
+      #{tvaluationContent,jdbcType=VARCHAR}, #{tvStaffid,jdbcType=INTEGER}, #{studentId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibeifeng.ssm.pojo.Tvaluation" >
+    insert into tvaluation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tvaluationId != null" >
+        tvaluation_id,
+      </if>
+      <if test="tvaluationDate != null" >
+        tvaluation_date,
+      </if>
+      <if test="tvaluationTitle != null" >
+        tvaluation_title,
+      </if>
+      <if test="tvaluationContent != null" >
+        tvaluation_content,
+      </if>
+      <if test="tvStaffid != null" >
+        tv_staffid,
+      </if>
+      <if test="studentId != null" >
+        student_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tvaluationId != null" >
+        #{tvaluationId,jdbcType=INTEGER},
+      </if>
+      <if test="tvaluationDate != null" >
+        #{tvaluationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="tvaluationTitle != null" >
+        #{tvaluationTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="tvaluationContent != null" >
+        #{tvaluationContent,jdbcType=VARCHAR},
+      </if>
+      <if test="tvStaffid != null" >
+        #{tvStaffid,jdbcType=INTEGER},
+      </if>
+      <if test="studentId != null" >
+        #{studentId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibeifeng.ssm.pojo.Tvaluation" >
+    update tvaluation
+    <set >
+      <if test="tvaluationDate != null" >
+        tvaluation_date = #{tvaluationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="tvaluationTitle != null" >
+        tvaluation_title = #{tvaluationTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="tvaluationContent != null" >
+        tvaluation_content = #{tvaluationContent,jdbcType=VARCHAR},
+      </if>
+      <if test="tvStaffid != null" >
+        tv_staffid = #{tvStaffid,jdbcType=INTEGER},
+      </if>
+      <if test="studentId != null" >
+        student_id = #{studentId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where tvaluation_id = #{tvaluationId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibeifeng.ssm.pojo.Tvaluation" >
+    update tvaluation
+    set tvaluation_date = #{tvaluationDate,jdbcType=VARCHAR},
+      tvaluation_title = #{tvaluationTitle,jdbcType=VARCHAR},
+      tvaluation_content = #{tvaluationContent,jdbcType=VARCHAR},
+      tv_staffid = #{tvStaffid,jdbcType=INTEGER},
+      student_id = #{studentId,jdbcType=INTEGER}
+    where tvaluation_id = #{tvaluationId,jdbcType=INTEGER}
+  </update>
+</mapper>
